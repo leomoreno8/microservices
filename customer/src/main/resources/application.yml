@@ -5,7 +5,7 @@ spring:
   application:
     name: customer
   datasource:
-    url: jdbc:postgresql://localhost:5433/customer
+    url: jdbc:postgresql://postgres:5432/customer
     username: root
     password: root
   jpa:
@@ -23,7 +23,7 @@ spring:
           instances:
             localhost:
               0:
-                uri: http://localhost:8092
+                uri: http://microservices-fraud:8092
 
 
 customer:
@@ -33,6 +33,6 @@ customer:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://eureka-server:8761/eureka/
     register-with-eureka: true
     fetch-registry: true

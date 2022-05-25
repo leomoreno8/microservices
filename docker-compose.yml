@@ -1,4 +1,18 @@
 services:
+
+  microservices-eureka-server:
+    container_name: eureka-server
+    image: microservices/eureka-server
+    networks:
+      - microservices
+
+  microservices-customer:
+    container_name: customer-application
+    image: microservices/customer
+    networks:
+      - microservices
+      - postgres
+
   postgres:
     container_name: postgres
     image: postgres
@@ -6,6 +20,7 @@ services:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: root
       PGDATA: /data/postgres
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/customer
     volumes:
       - postgres:/data/postgres
     ports:
@@ -30,17 +45,34 @@ services:
     restart: unless-stopped
 
   mongodb_container:
+    container_name: mongodb
     image: mongo:latest
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: rootpassword
     ports:
-      - 27017:27017
+      - 27018:27017
     volumes:
       - mongodb_data_container:/data/db
 
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: 'rabbitmq'
+    ports:
+      - 5673:5672
+      - 15673:15672
+    volumes:
+      - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+      - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+    networks:
+      - rabbitmq
+
 networks:
   postgres:
+    driver: bridge
+  rabbitmq:
+    driver: bridge
+  microservices:
     driver: bridge
 
 volumes:

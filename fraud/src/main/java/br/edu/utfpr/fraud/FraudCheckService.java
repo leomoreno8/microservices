@@ -12,17 +12,17 @@ import java.time.LocalDateTime;
 public class FraudCheckService {
 
     private final FraudCheckHistoryRepository repository;
+    private final BrokerService brokerService;
 
     public boolean isFraudCustomer(Integer customerId) {
         log.info("Check if {} isFraudster", customerId);
-        repository.save(
+        brokerService.send(repository.save(
                 FraudCheckHistory.builder().
                         customerId(customerId).
                         isFraudster(false).
                         createdAt(LocalDateTime.now()).
                         build()
-        );
+        ));
         return false;
     }
-
 }

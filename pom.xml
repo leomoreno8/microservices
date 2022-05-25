@@ -13,9 +13,10 @@
     <module>customer</module>
     <module>fraud</module>
     <module>eureka-server</module>
+    <module>notification</module>
   </modules>
 
-  <name>microservices-teach</name>
+  <name>microservices</name>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

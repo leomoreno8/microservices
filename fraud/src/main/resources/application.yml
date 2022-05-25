@@ -10,12 +10,21 @@ spring:
       username: root
       password: rootpassword
       database: fraud
-      port: 27017
+      port: 27018
       host: localhost
+  rabbitmq:
+    host: localhost
+    port: 5673
+    username: guest
+    password: guest
+    exchange:
+      name: fraud-to-notification
+    queue:
+      name: fraudsters-%s
 
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: docker
     register-with-eureka: true
     fetch-registry: true
