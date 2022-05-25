@@ -1,0 +1,8 @@
+br\edu\utfpr\fraud\BrokerService.class
+br\edu\utfpr\fraud\FraudApplication.class
+br\edu\utfpr\fraud\FraudCheckHistory.class
+br\edu\utfpr\fraud\FraudController.class
+br\edu\utfpr\fraud\FraudCheckHistory$FraudCheckHistoryBuilder.class
+br\edu\utfpr\fraud\FraudCheckService.class
+br\edu\utfpr\fraud\FraudCheckHistoryRepository.class
+br\edu\utfpr\fraud\FraudCheckResponse.class
